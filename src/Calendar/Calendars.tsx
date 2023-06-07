@@ -1,56 +1,35 @@
 
 import React, {useState} from 'react';
-import {Calendar, LocaleConfig} from 'react-native-calendars';
-
-LocaleConfig.locales['fr'] = {
-  monthNames: [
-    'Janvier',
-    'Février',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet',
-    'Août',
-    'Septembre',
-    'Octobre',
-    'Novembre',
-    'Décembre'
-  ],
-  monthNames: [
-    'Janvier',
-    'Février',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet',
-    'Août',
-    'Septembre',
-    'Octobre',
-    'Novembre',
-    'Décembre'
-  ],
-  monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-  today: "Aujourd'hui"
-};
-
-LocaleConfig.defaultLocale = 'fr';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 const Calendars = () => {
   const [selected, setSelected] = useState('');
+  const [eventosCalendario, setEventosCalendario] = useState({});
+
+
+  const agregarEventoCalendario = (fecha, pedido) => {
+    const eventosActualizados = { ...eventosCalendario };
+    
+    if (!eventosActualizados[fecha]) {
+      eventosActualizados[fecha] = [];
+    }
+  
+    eventosActualizados[fecha].push(pedido);
+  
+    setEventosCalendario(eventosActualizados);
+  };
 
   return (
+    <View>
     <Calendar
-      onDayPress={day => {
-        setSelected(day.dateString);
-      }}
-      markedDates={{
-        [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+      markedDates={eventosCalendario}
+      onDayPress={(day) => {
+        // Implementa la lógica para mostrar los pedidos del día seleccionado
+        const pedidosDelDia = eventosCalendario[day.dateString];
+        console.log('Pedidos del día', pedidosDelDia);
       }}
     />
+  </View>
   );
 };
 

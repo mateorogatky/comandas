@@ -4,6 +4,7 @@ import User from './src/user/User'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Calendars from './src/Calendar/Calendars';
+import pedidos from './src/Pedidos/pedidos';
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="User" component={User} />
         <Stack.Screen name="Calendar" component={Calendars} />
+        <Stack.Screen name="Pedidos" component={pedidos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

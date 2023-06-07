@@ -9,6 +9,10 @@ export default function Home() {
     navigation.navigate("User");
   };
 
+  const handlePress3 = () => {
+    navigation.navigate("Pedidos");
+  };
+
   const handlePress2 = () => {
     navigation.navigate("Calendar");
   };
@@ -25,6 +29,9 @@ export default function Home() {
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, styles.secondButton]} onPress={handlePress2}>
             <Text style={styles.buttonText}>Calendar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.threeButton]} onPress={handlePress3}>
+            <Text style={styles.buttonText}>Pedidos</Text>
           </TouchableOpacity>
         </View>
       
@@ -67,6 +74,9 @@ const styles = StyleSheet.create({
   },
   secondButton:{
     marginLeft:10
+  },
+  threeButton:{
+    marginLeft:20
   }
 });
 
