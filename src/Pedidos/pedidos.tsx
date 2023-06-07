@@ -16,17 +16,37 @@ const Pedidos = () => {
 
   useEffect(() => {
     const obtenerClientes = async () => {
-      try {
-        const storedClientes = await AsyncStorage.getItem('clients');
-        const parsedClientes = storedClientes ? JSON.parse(storedClientes) : [];
-        setClientes(parsedClientes);
-      } catch (error) {
-        console.error('Error al obtener la lista de clientes:', error);
-      }
+      // ...
+  
+      const obtenerPedidos = async () => {
+        try {
+          const storedPedidos = await AsyncStorage.getItem('pedidos');
+          const parsedPedidos = storedPedidos ? JSON.parse(storedPedidos) : [];
+          
+          const eventosActualizados = {};
+          
+          parsedPedidos.forEach((pedido) => {
+            const fecha = pedido.calendarios;
+            
+            if (!eventosActualizados[fecha]) {
+              eventosActualizados[fecha] = [];
+            }
+            
+            eventosActualizados[fecha].push(pedido);
+          });
+          
+          setEventosCalendario(eventosActualizados);
+        } catch (error) {
+          console.error('Error al obtener la lista de pedidos:', error);
+        }
+      };
+  
+      obtenerPedidos();
     };
-
+  
     obtenerClientes();
   }, []);
+  
 
   const agregarEventoCalendario = (fecha, pedido) => {
     const eventosActualizados = { ...eventosCalendario };
