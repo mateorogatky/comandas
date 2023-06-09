@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import CustomButton from "./CustomButton";
 
 export default function Home() {
   const navigation = useNavigation();
@@ -24,14 +25,14 @@ export default function Home() {
       </View>
       
         <View  style={styles.buttons}>
-          <TouchableOpacity style={[styles.button, styles.firstButton]} onPress={handlePress}>
-            <Text style={styles.buttonText}>Clientes</Text>
+          <TouchableOpacity style={[styles.button, styles.firstButton]} >
+            <CustomButton title='Clientes' onPress={handlePress}/>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.secondButton]} onPress={handlePress2}>
-            <Text style={styles.buttonText}>Calendar</Text>
+          <TouchableOpacity style={[styles.button, styles.secondButton]} >
+            <CustomButton  title='Calendar' onPress={handlePress2}/>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.threeButton]} onPress={handlePress3}>
-            <Text style={styles.buttonText}>Pedidos</Text>
+          <TouchableOpacity style={[styles.button, styles.threeButton]} >
+            <CustomButton title='Pedidos' onPress={handlePress3}/>
           </TouchableOpacity>
         </View>
       
@@ -43,7 +44,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#c5c6c8",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -70,13 +71,13 @@ const styles = StyleSheet.create({
     padding:10
   },
   firstButton:{
-    marginRight:10,
+    marginRight:5,
   },
   secondButton:{
-    marginLeft:10
+    marginLeft:5
   },
   threeButton:{
-    marginLeft:20
+    marginLeft:10
   }
 });
 

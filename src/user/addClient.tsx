@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import  { SuccessAlert }  from '../alertExito'
+import CustomButton from '../CustomButton';
 
 const AddClient = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('')
   const [apellido, setApellido] = useState('')
 
+  const [isSuccessVisible, setSuccessVisible] = useState(false);
+
+
+  const handleCloseSuccess = () => {
+    setSuccessVisible(false);
+  };
+ 
   const handleAddClient = async () => {
     // Validar que se ingrese un nombre y un correo electrónico
     if (name === '' || phoneNumber === '' || apellido === '' ) {
@@ -39,9 +48,12 @@ const AddClient = () => {
       setApellido('')
 
       // Mostrar una alerta de éxito
-      Alert.alert('Éxito', 'Cliente agregado exitosamente');
+      setSuccessVisible(true);
+      
+
     } catch (error) {
       console.error('Error al agregar el cliente:', error);
+      setSuccessVisible(false);
     }
   };
 
@@ -62,22 +74,36 @@ const AddClient = () => {
         value={phoneNumber}
         onChangeText={(text) => setPhoneNumber(text)}
       />
-      <Button title="Agregar cliente" onPress={handleAddClient} />
+    
+      <TouchableOpacity style={styles.container}>
+      <CustomButton title="Agregar Cliente" onPress={handleAddClient} />
+    </TouchableOpacity>
+     
+     <SuccessAlert isVisible={isSuccessVisible} onClose={handleCloseSuccess} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "#c5c6c8",
     alignItems: "center",
     justifyContent: "center",
+    borderColor: '#fff',
+    borderWidth: 0.5,
+    
   },
   button: {
     backgroundColor: "#b2e2f2",
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
+  },
+  buttonText: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

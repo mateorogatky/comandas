@@ -1,16 +1,21 @@
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View } from 'react-native';
 import AddClient from './addClient';
 import ClientDetails from './clientDetails';
 import RemoveClient from './removeClient';
+import { color } from 'react-native-reanimated';
 
 export default function User() {
 
   return (
     <View style={styles.container}>
-          <Text>aca se van a cargar y modificar y elimiar clientes</Text>
+      <View style={styles.clientes}>
+          <Text style={styles.title}>Cargar clientes nuevos:</Text>
           <AddClient/>
+      </View>
+      <View style={styles.detalles}>    
+          <Text style={styles.title}>Clientes cargados:</Text>
           <ClientDetails/>
+      </View>
           <RemoveClient/>
     </View>
   );
@@ -19,10 +24,19 @@ export default function User() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#c5c6c8',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  clientes:{
+    marginTop:200,
+  },
+  detalles:{
+    marginTop:100
+  },
+  title:{
+    fontSize:20,
+  }
   
 
 });

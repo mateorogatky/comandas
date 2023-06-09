@@ -47,12 +47,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#c5c6c8',
+    borderColor:'#fff',
   },
   clientItem: {
     marginBottom: 10,
     padding: 10,
-    backgroundColor: '#eaeaea',
+    backgroundColor: '#c5c6c8',
     borderRadius: 8,
+    borderColor: "#fff"
   },
 });
 
